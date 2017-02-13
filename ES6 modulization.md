@@ -25,7 +25,7 @@ console.log(diag(4, 3)); // 5
 
 ## 导出方式
 * 使用 export{接口} 导出接口， 大括号中的接口名字为上面定义的变量， import和export是对应的；
-```
+```js
 //lib.js
 let bar = "stringBar";
 let foo = "stringFoo";
@@ -44,13 +44,13 @@ fn1();
 ```
 * 在export接口的时候， 我们可以使用 XX as YY， 把导出的接口名字改了， 比如： closureFn as sayingFn， 把这些接口名字改成不看文档就知道干什么的：
 * 直接在export的地方定义导出的函数，或者变量
-```
+```js
 //lib.js
 export let foo = ()=> {console.log("fnFoo");
 return "foo"},bar = "stringBar";
 ```
 * export defalut : 如果一个js模块文件就只有一个功能， 那么就可以使用export default导出;这种方式不需要知道变量的名字，相当于是匿名的，直接把开发的接口给export；
-```
+```js
 //lib.js
 export default "string";
 //main.js
@@ -58,7 +58,7 @@ import defaultString from "./lib";
 console.log(defaultString);
 ```
 * export XX as default : export也能默认导出函数， 在import的时候， 名字随便写， 因为每一个模块的默认接口就一个：
-```
+```js
 //lib.js
 let fn = () => "string";
 export {fn as default};
@@ -67,7 +67,7 @@ import defaultFn from "./lib";
 console.log(defaultFn());
 ```
 * 使用通配符* ,重新导出其他模块的接口
-```
+```js
 //lib.js
 export * from "./other";
 //如果只想导出部分接口， 只要把接口名字列出来
@@ -81,14 +81,14 @@ console.log(fnFoo());
 ```
 ## 模块化发展历程
 ### IIFE
-```
+```js
 const myModule = (function (...deps){
        // JavaScript chunk
        return {hello : () => console.log(‘hello from myModule’)};
     })(dependencies);
 ```
 ### AMD
-```
+```js
   <pre>define(‘myModule’, [‘dep1’, ‘dep2’], function (dep1, dep2){
         // JavaScript chunk, with a potential deferred loading
         return {hello: () => console.log(‘hello from myModule’)};
@@ -99,7 +99,7 @@ const myModule = (function (...deps){
     });
 ```
 ### CommonJs
-```
+```js
 // file1.js
     modules.export = {
         hello : () => console.log(‘hello from myModule’)
@@ -110,7 +110,7 @@ const myModule = (function (...deps){
 ```
 ### UMD
 AMD适合浏览器，CommonJs适合Node，UMD通过把二者结合起来，使之在各种需求下都是可集成的
-```
+```js
    (function (global, factory) {
         typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
         typeof define === 'function' && define.amd ? define(factory) :
