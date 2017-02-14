@@ -84,17 +84,17 @@ console.log(fnFoo());
 ```js
 const myModule = (function (...deps){
        // JavaScript chunk
-       return {hello : () => console.log(‘hello from myModule’)};
+       return {hello : () => console.log('hello from myModule')};
     })(dependencies);
 ```
 ### AMD
 ```js
-  <pre>define(‘myModule’, [‘dep1’, ‘dep2’], function (dep1, dep2){
+ <pre>define('myModule', ['dep1', 'dep2'], function (dep1, dep2){
         // JavaScript chunk, with a potential deferred loading
-        return {hello: () => console.log(‘hello from myModule’)};
+        return {hello: () => console.log('hello from myModule')};
     });
     // anywhere else
-    require([‘myModule’], function (myModule) {
+    require(['myModule'], function (myModule) {
         myModule.hello() // display ‘hello form myModule’
     });
 ```
@@ -102,7 +102,7 @@ const myModule = (function (...deps){
 ```js
 // file1.js
     modules.export = {
-        hello : () => console.log(‘hello from myModule’)
+        hello : () => console.log('hello from myModule')
     }
 // file2;
     const myModule = require('./file1.js');
@@ -118,12 +118,13 @@ AMD适合浏览器，CommonJs适合Node，UMD通过把二者结合起来，使�
     }(this, function () {
         // JavaScript chunk
         return {
-           hello : () => console.log(‘hello from myModule’)
+           hello : () => console.log('hello from myModule')
         }
     });
 ```
 ### ES6
 * 可以限制import的内容，便于静态分析
+
 **重大差异:**
 * CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用
 * CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。这是因为 CommonJS 加载的是一个对象（即module.exports属性），该对象只有在脚本运行完才会生成。而 ES6 模块不是对象，它的对外接口只是一种静态定义，在代码静态解析阶段就会生成。
